@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:threadcarfts/components/circular_image.dart';
-import 'package:threadcarfts/drawer/desktop/desktop_main_drawer.dart';
 import 'package:threadcarfts/layout/email_button.dart';
 import 'package:threadcarfts/layout/notification_button.dart';
+import 'package:threadcarfts/layout/tab_buttons.dart';
 
 import '../../color/color_select.dart';
 import '../../strings/app_texts.dart';
@@ -67,7 +67,9 @@ class _MainDesktopPageState extends State<MainDesktopPage> {
               Container( height: 1, color: Colors.black26,),
               Expanded(child: Row(
                 children: [
-                  Container(width:  250,),
+                  Container(width:  250,
+                    margin: EdgeInsets.only(top: 10),
+                    child: TabButtons(),),
                   Container(width: 1, color: Colors.black26,),
                   Expanded(child: Container(color: Colors.black12,))
                 ],

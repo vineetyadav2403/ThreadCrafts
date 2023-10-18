@@ -37,7 +37,7 @@ class _CircularImageState extends State<CircularImage> {
       child: CircleAvatar(
         radius: widget.radius,
         backgroundColor: Colors.grey,
-        //backgroundImage: const NetworkImage('https://firebasestorage.googleapis.com/v0/b/threadcrafts.appspot.com/o/IMG_20210424_184552969_BURST000_COVER_TOP_2.jpg?alt=media&token=3fb6195d-2f1e-4725-8d4a-196193711085&_gl=1*5nz2od*_ga*MTM1NjkxMzU4NS4xNjcxNTIyMTY2*_ga_CW55HF8NVT*MTY5NTkxNDQ2Mi4yMC4xLjE2OTU5MTQ2MjQuNjAuMC4w'),
+        backgroundImage: const NetworkImage('https://firebasestorage.googleapis.com/v0/b/threadcrafts.appspot.com/o/IMG_20210424_184552969_BURST000_COVER_TOP_2.jpg?alt=media&token=3fb6195d-2f1e-4725-8d4a-196193711085&_gl=1*5nz2od*_ga*MTM1NjkxMzU4NS4xNjcxNTIyMTY2*_ga_CW55HF8NVT*MTY5NTkxNDQ2Mi4yMC4xLjE2OTU5MTQ2MjQuNjAuMC4w'),
       ),
     );
   }
