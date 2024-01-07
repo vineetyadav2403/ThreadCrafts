@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:threadcarfts/components/circular_image.dart';
+import 'package:threadcarfts/footer.dart';
+import 'package:threadcarfts/fragments/main/customers_fragment.dart';
+import 'package:threadcarfts/fragments/main/dashboard_fragment.dart';
+import 'package:threadcarfts/fragments/main/inventory_fragment.dart';
+import 'package:threadcarfts/fragments/main/orders_fragment.dart';
+import 'package:threadcarfts/fragments/main/settings_fragment.dart';
+import 'package:threadcarfts/fragments/main/store_fragment.dart';
 import 'package:threadcarfts/layout/email_button.dart';
 import 'package:threadcarfts/layout/notification_button.dart';
 import 'package:threadcarfts/layout/tab_buttons.dart';
+import 'package:threadcarfts/strings/navigation_texts.dart';
 
-import '../../color/color_select.dart';
+import '../../fragments/main/products_fragment.dart';
+import '../../responsive/dimensions.dart';
 import '../../strings/app_texts.dart';
 
 class MainDesktopPage extends StatefulWidget {
@@ -15,7 +24,36 @@ class MainDesktopPage extends StatefulWidget {
 }
 
 class _MainDesktopPageState extends State<MainDesktopPage> {
+  String tabName = DrawerTexts.inventory;
   int emailCounter = 0;
+
+  void updateTabName(String tabName) {
+    setState(() {
+      this.tabName = tabName;
+    });
+  }
+
+  StatefulWidget selectFragments(String tabName) {
+    switch(tabName) {
+      case DrawerTexts.dashboard:
+        return const DashboardFragment();
+      case DrawerTexts.orders:
+        return const OrdersFragment();
+      case DrawerTexts.products:
+        return const ProductFragments();
+      case DrawerTexts.customers:
+        return const CustomerFragment();
+      case DrawerTexts.settings:
+        return const SettingsFragment();
+      case DrawerTexts.store:
+        return const StoreFragment();
+      case DrawerTexts.inventory:
+        return const InventoryFragment();
+      default:
+        return const DashboardFragment();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return
@@ -25,7 +63,7 @@ class _MainDesktopPageState extends State<MainDesktopPage> {
               Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.only(left: 20),
-                height: 75,
+                height: appBarWidth,
                 color: Colors.white,
                 child: Center(
                   child: Row(
@@ -36,10 +74,12 @@ class _MainDesktopPageState extends State<MainDesktopPage> {
                       ),
                       Text(
                         AppTexts.appName,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                            fontSize: 20),
                       ),
                       SizedBox(width: 70,),
-                      Text("Dashboard", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),),
+                      Text(tabName, style: TextStyle(fontWeight: FontWeight.w500,
+                          fontSize: 20),),
                       Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -64,14 +104,25 @@ class _MainDesktopPageState extends State<MainDesktopPage> {
                   ),
                 ),
               ),
-              Container( height: 1, color: Colors.black26,),
-              Expanded(child: Row(
-                children: [
-                  Container(width:  250,
-                    margin: EdgeInsets.only(top: 10),
-                    child: TabButtons(),),
-                  Container(width: 1, color: Colors.black26,),
-                  Expanded(child: Container(color: Colors.black12,))
+              Container( height: divderSize, color: Colors.black26,),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height - appBarWidth - divderSize,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: tabBoxSize,
+                            height: MediaQuery.of(context).size.height - appBarWidth - divderSize - 10 - footerSize,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: TabButtons(callback: updateTabName),
+                          ),
+                          const SizedBox(width: tabBoxSize, height: footerSize,
+                            child: Center(child: Text(AppTexts.appName),),)
+                        ],
+                      ),
+                      selectFragments(tabName)
                 ],
               ))
             ],

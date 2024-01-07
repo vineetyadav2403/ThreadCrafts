@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:threadcarfts/color/color_select.dart';
+import 'package:threadcarfts/strings/navigation_texts.dart';
 
 class TabButtons extends StatefulWidget {
-  const TabButtons({super.key});
-
+  const TabButtons({super.key, required this.callback});
+  final Function(String) callback;
   @override
   State<TabButtons> createState() => _TabButtonsState();
 }
@@ -13,37 +14,43 @@ class _TabButtonsState extends State<TabButtons> {
   bool isClick = false;
   List<Map> buttonList = [
     {
-      'label': 'Dashboard',
+      'label': DrawerTexts.dashboard,
       'active': true,
       'isHover': false,
       'icon': Icons.dashboard_customize_outlined
     },
     {
-      'label': 'Orders',
+      'label': DrawerTexts.orders,
       'active': false,
       'isHover': false,
       'icon': Icons.shopping_bag_outlined
     },
     {
-      'label': 'Products',
+      'label': DrawerTexts.products,
       'active': false,
       'isHover': false,
       'icon': Icons.production_quantity_limits_sharp
     },
     {
-      'label': 'Customers',
+      'label': DrawerTexts.inventory,
+      'active': false,
+      'isHover': false,
+      'icon': Icons.inventory_outlined
+    },
+    {
+      'label': DrawerTexts.customers,
       'active': false,
       'isHover': false,
       'icon': Icons.person_outlined
     },
     {
-      'label': 'Store',
+      'label': DrawerTexts.store,
       'active': false,
       'isHover': false,
       'icon': Icons.storefront_sharp
     },
     {
-      'label': 'Settings',
+      'label': DrawerTexts.settings,
       'active': false,
       'isHover': false,
       'icon': Icons.settings_outlined
@@ -83,6 +90,7 @@ class _TabButtonsState extends State<TabButtons> {
         element['active'] = false;
       }
       button['active'] = true;
+      widget.callback(button['label']);
     });
   }
 
