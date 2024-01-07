@@ -11,3 +11,12 @@ class NavigationTexts {
   static const businessDashboard = "Business Dashboard";
   static const qualityDashboard = "Quality Dashboard";
 }
+class DrawerTexts {
+  static const dashboard = "Dashboard";
+  static const orders = "Orders";
+  static const products = "Products";
+  static const customers = "Customers";
+  static const store = "Store";
+  static const settings = "Settings";
+  static const inventory = "Inventory";
+}
